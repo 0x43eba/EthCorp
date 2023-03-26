@@ -36,7 +36,7 @@ contract Company {
     function mintISK() public onlyEmployeeWithBurnedOffer {
         uint256 level = _employmentContract.getLevel(msg.sender);
         uint256 curentBalance = isk.balanceOf(msg.sender);
-        require(level > curentBalance, "you can not mint more ATLI than your level");
+        require(level > curentBalance, "you can not mint more ISK than your level");
         uint256 delta = level - curentBalance;
         isk.mint(msg.sender, delta);
     }
