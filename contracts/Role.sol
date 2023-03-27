@@ -8,5 +8,5 @@ enum Role {
     Executive,
     Designer,
     ProjectManager,
-    None,
+    None
 }

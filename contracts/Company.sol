@@ -23,6 +23,7 @@ contract Company {
 
     constructor(address employmentContract, address employmentOffer) {
         _owner = msg.sender;
+        // Already initialized on-chain
         _employmentOffer = EmploymentOffer(employmentOffer);
         _employmentContract = EmploymentContract(employmentContract);
         isk = new ISK(address(this));

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
 import "./RoleRestricted.sol";
@@ -9,14 +9,15 @@ import "./Employable.sol";
 import "./Employee.sol";
 
 // Deploy me second
-contract EmploymentOffer is ERC721, RoleRestricted, Employable {
+contract EmploymentOffer is ERC721Upgradeable, RoleRestricted, Employable {
 
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
     address private _owner;
     mapping(address => Employee) private _candidates;
 
-    constructor(address owner) ERC721("EmploymentOffer", "EMO") {
+    function initialize(address owner) public initializer {
+        __ERC721_init("EmploymentOffer", "EMO");
         _owner = owner;
     }
 

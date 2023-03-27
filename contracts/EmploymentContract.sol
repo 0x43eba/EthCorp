@@ -3,6 +3,7 @@ pragma solidity ^0.8.4;
 
 import "./Employee.sol";
 
+import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
@@ -11,7 +12,7 @@ import "./EmploymentOffer.sol";
 import "./Employable.sol";
 
 // Deploy me third
-contract EmploymentContract is ERC721, RoleRestricted, Employable {
+contract EmploymentContract is ERC721Upgradeable, RoleRestricted, Employable {
 
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
@@ -19,8 +20,10 @@ contract EmploymentContract is ERC721, RoleRestricted, Employable {
     EmploymentOffer private _offer;
     mapping(address => Employee) private _employees;
 
-    constructor(address owner, address employmentOfferContract) ERC721("EmploymentContract", "EMC") {
+    function initialize(address owner, address employmentOfferContract) public initializer {
+        __ERC721_init("EmploymentContract", "EMC");
         _owner = owner;
+        // Already initialized on-chain
         _offer = EmploymentOffer(employmentOfferContract);
     }
 
