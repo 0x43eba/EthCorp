@@ -5,8 +5,9 @@ coverage.json
 typechain
 typechain-types
 env.sh
+.DS_Store
+
 # Hardhat files
 cache
 artifacts
 env.sh
-.DS_Store

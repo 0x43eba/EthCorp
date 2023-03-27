@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "hardhat/console.sol";
 
 import "./Employee.sol";
-
+// Upgradable contract
 // Deploy me last. Need to limit this to only callable from the contract somehow
 contract ISK is ERC20 {
     address private _controllingAddress;
